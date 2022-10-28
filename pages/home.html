@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    *,
+    ::before,
+    ::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      padding: 8rem;
+      font-family: 'Poppins', sans-serif;
+      background-color: #675A6F;
+      color: #fff4ff;
+      font-family: 'Poppins', sans-serif;
+    }
+    .post {
+      padding: 1rem;
+      background-color: rgba(210, 159, 241, 0.1);
+      max-width: 95%;
+      min-width: min-content;
+      display: flex;
+      justify-content: start;
+      align-items: flex-start;
+      flex-direction: column;
+      position: relative;
+    }
+    .editButton {
+      color: white;
+      background: #4B196B;
+      border: none;
+      padding: 1rem;
+      border-radius: .25rem;
+      margin-left: auto;
+      cursor: pointer;
+      z-index: 5;
+      transition: all 120ms ease-out;
+      position: relative;
+    }
+    .editButton:hover{
+      color: #d29ff1;
+    }
+    .linkstyle::after{
+      position: absolute;
+      inset: 0;
+      content: "";
+      display: block;
+      cursor: pointer;
+    }
+    .linkstyle:hover{
+      background-color: aqua;
+    }
+    .posthr {
+      width: 100%;
+      border: none;
+      height: 1px;
+      border-radius: 1px;
+      background-color: #4B196B;
+      margin: .25em;
+      align-self: center;
+    }
+    .postwrapper{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .title{
+      width: 100%;
+    }
+    .profile{
+      cursor: pointer;
+      transition: all 120ms ease-out;
+      color: unset;
+      text-decoration: none;
+    }
+    .profile:hover{
+      color: #d29ff1;
+      text-decoration: underline;
+    }
+    .blanklink{
+      color: unset;
+      text-decoration: none;
+    }
+    .blanklink::after{
+      position: absolute;
+      inset: 0;
+      content: "";
+      display: block;
+      cursor: pointer;
+    }
+  </style>
+  <div style="
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  ">
+    <h1>WompBlog</h1>
+    <button id="logbutton" style="display: none;">Log Posts</button>
+    <div style="
+      margin-left: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    ">
+      <a class="profile" href="http://localhost:3071/profile">Profile</a>
+      <div style="
+        font-size: 2rem;
+        background-color: #4B196B;
+        border-radius: .25em;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      "><a href="http://localhost:3071/create" style="
+        border: none;
+        margin: 0;
+        text-decoration: none;
+        color: unset;
+      ">+</a></div>
+    </div>
+  </div>
+  <div class="posts" style="
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 3em 2em;
+    height: min-content;
+    flex-direction: column;
+    background-color: unset;
+    max-width: 32rem;
+    gap: 1rem;
+  ">
+    <h3>Posts</h3>
+  </div>
+
+  <script>
+    const logbutton = document.getElementById('logbutton')
+
+    const populatePage = (data) => {
+      Object.entries(data).map((post) => {
+        appendPost(post[1].title, post[1].author, post[1]._content, post[1]._id);
+      })
+    }
+
+    const appendPost = (title, author, content, _id) => {
+      const postContainer = document.querySelector('.posts')
+
+      const newPost = document.createElement('div');
+      newPost.innerHTML = `
+        <div class="post">
+          <div class="postwrapper">
+            <h2 class="title">${title}</h2>
+            <a class="linkstyle" href="http://localhost:3071/posts/${_id}"></a>
+            <button class="editButton"><a class="blanklink" href="http://localhost:3071/posts/${_id}/edit">Edit</a></button>
+          </div>
+          <h4 class="author">${author}</h4>
+          <hr class="posthr">
+          <p class="content">${content}</p>
+        </div>
+      `;
+
+      postContainer.appendChild(newPost);
+    }
+
+    const displayPosts = (posts) => {
+
+    }
+
+    const getAllPosts = async () => {
+      console.log('retrieving posts...')
+      
+      fetch('http://localhost:3071/api/posts', {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => {console.log(data); populatePage(data)})
+        
+      // const posts = await fetch('http://localhost:3071/api/posts', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-type': 'application/json'
+      //   }
+      // });
+      // if (posts.ok) {
+      //   console.log(posts.json())
+      // }
+    }
+
+    window.onload = () => {
+      getAllPosts();
+    }
+
+    logbutton.addEventListener('click', () => {
+      getAllPosts();
+    });
+  </script>
+</body>
+</html>

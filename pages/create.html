@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    async function sConsole(event) {
+      event.preventDefault();
+      var data = {
+        "title": document.getElementById('title').value,
+        "_content": document.getElementById('content').value,
+      }
+      console.log(data)
+
+      const result = await fetch('http://localhost:3071/api/posts', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+
+      console.log(result)
+
+      if (result.ok) {
+        window.location.href = "http://localhost:3071/";
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background-color: #675A6F;
+      color: #fff4ff;
+    }
+    #submitbutton {
+      background-color: #4B196B;
+      outline: none;
+      border: none;
+      color: #fff4ff;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 120ms ease-out;
+    }
+    #submitbutton:hover{ 
+      color: #d29ff1;
+    }
+  </style>
+
+  <h1>Create Post</h1>
+
+  <form onsubmit="sConsole(event)" style="display: flex; justify-content: center; align-items: start; flex-direction: column; gap: 2em;">
+    <input type="text" name="title" placeholder="Title" id="title">
+    <textarea type="textarea" name="content" placeholder="content" id="content"></textarea>
+    <input type="submit" id="submitbutton">
+  </form>
+</body>
+</html>

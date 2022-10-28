@@ -12,13 +12,13 @@
     async function sConsole(event) {
       event.preventDefault();
       var data = {
-        "email": document.getElementById('email').value,
-        "password": document.getElementById('password').value
+        "title": document.getElementById('title').value,
+        "_content": document.getElementById('content').value,
       }
       console.log(data)
 
-      const result = await fetch('http://localhost:3071/auth/signin', {
-        method: "POST",
+      const result = await fetch(window.location.href, {
+        method: "PUT",
         body: JSON.stringify(data),
         headers: {
           'Content-type': 'application/json'
@@ -43,8 +43,8 @@
       flex-direction: column;
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
-      color: #fff4ff;
       background-color: #675A6F;
+      color: #fff4ff;
     }
     #submitbutton {
       background-color: #4B196B;
@@ -58,27 +58,14 @@
     #submitbutton:hover{ 
       color: #d29ff1;
     }
-    input {
-      padding: .35rem;
-    }
   </style>
 
-  <h1>Signin</h1>
+  <h1>Edit Post</h1>
 
   <form onsubmit="sConsole(event)" style="display: flex; justify-content: center; align-items: start; flex-direction: column; gap: 2em;">
-    <input type="text" name="email" placeholder="Email" id="email" autocomplete="off">
-    <input type="password" name="password" placeholder="Password" id="password">
-    <div style="
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    ">
+    <input type="text" name="title" placeholder="Title" id="title">
+    <textarea type="textarea" name="content" placeholder="content" id="content"></textarea>
     <input type="submit" id="submitbutton">
-    <a href="http://localhost:3071/signup" style="
-      margin-left: auto;
-    ">Signup</a>
-    </div>
   </form>
 </body>
 </html>

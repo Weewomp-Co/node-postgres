@@ -13,7 +13,8 @@
       event.preventDefault();
       var data = {
         "email": document.getElementById('email').value,
-        "password": document.getElementById('password').value
+        "password": document.getElementById('password').value,
+        "username": document.getElementById('username').value
       }
 
       if(document.getElementById('confirm').value !== data.password) {
@@ -73,6 +74,7 @@
 
   <form onsubmit="sConsole(event)" style="display: flex; justify-content: center; align-items: start; flex-direction: column; gap: 2em;">
     <input type="text" name="email" placeholder="Email" id="email" autocomplete="off">
+    <input type="text" name="username" placeholder="Username" id="username" autocomplete="off">
     <input type="password" name="password" placeholder="Password" id="password">
     <input type="password" name="password" placeholder="Confirm Password" id="confirm">
     <input type="submit" id="submitbutton">

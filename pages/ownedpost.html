@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    function returnLink(){
+      const link = `http://localhost:3071/posts/${window.location.href.slice(28)}/edit`
+
+      return link;
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body {
+      background-color: #675A6F;
+      /* background-color: red; */
+      color: #fff4ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow: hidden;
+      gap: 1rem;
+    }
+
+    .container{
+      min-height: 15rem;
+      background-color: rgba(210, 159, 241, 0.1);
+      padding: 3rem 2rem;
+      max-width: 30rem;
+      min-width: 30rem;
+    }
+
+    #submitbutton {
+      background-color: #4B196B;
+      outline: none;
+      border: none;
+      color: #fff4ff;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 120ms ease-out;
+    }
+    #submitbutton:hover{ 
+      color: #d29ff1;
+    }
+  </style>
+
+  <div style="
+    display: flex;
+    width: 82%;
+    justify-content: space-between;
+    align-items: center;
+  ">
+    <h1>You own this post</h1>
+    <button id="submitbutton">Edit</button>
+  </div>
+  <div class="container">
+    <h1 id="title"></h1>
+    <h2 id="author"></h2>
+    <p id="content"></p>
+  </div>
+
+  <div class="container">
+    <h1>Comments</h1>
+    <hr style="
+      border: none;
+      height: 1px;
+      width: 100%;
+      background-color: #4B196B;
+    ">
+  </div>
+
+  <script>
+    const getPostData = async (id) => {
+      const postData = await fetch(`http://localhost:3071/api/posts/${id}`, {
+        method: "GET",
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(data => updatePage(data))
+    };
+
+    const updatePage = async (data) => {
+      console.log(data)
+      document.getElementById("title").innerText = data[0].title
+      document.getElementById("content").innerText = data[0]._content
+      document.getElementById("author").innerText = data[0].author
+
+      
+    };
+
+    document.getElementById('submitbutton').addEventListener('click', () =>{
+      window.location.href = `http://localhost:3071/posts/${window.location.href.slice(28)}/edit`
+    })
+
+    window.onload = () => {
+      getPostData(window.location.href.slice(28))
+    };
+
+  </script>
+</body>
+</html>

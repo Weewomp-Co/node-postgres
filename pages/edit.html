@@ -73,8 +73,8 @@
       const titleInput = document.getElementById('title')
       const contentInput = document.getElementById('content')
 
-      titleInput.value = postData.title;
-      contentInput.value = postData._content
+      titleInput.value = postData[1].title;
+      contentInput.value = postData[1]._content
     }
 
     const getPostData = async () => {

@@ -10,7 +10,7 @@
   
   <script>
     function returnLink(){
-      const link = `https://node-postgres-production.up.railway.app/${window.location.href.slice(28)}/edit`
+      const link = `https://node-postgres-production.up.railway.app/${window.location.href.slice(54)}/edit`
 
       return link;
     }
@@ -101,12 +101,11 @@
     };
 
     document.getElementById('submitbutton').addEventListener('click', () =>{
-      // window.location.href = `https://node-postgres-production.up.railway.app/posts/${window.location.href.slice(55)}/edit`
-      console.log(window.location.href.slice(54))
-    })
+      window.location.href = `https://node-postgres-production.up.railway.app/posts/${window.location.href.slice(54)}/edit`
+      })
 
     window.onload = () => {
-      getPostData(window.location.href.slice(28))
+      getPostData(window.location.href.slice(54))
     };
 
   </script>

@@ -28,7 +28,7 @@
       console.log(result)
 
       if (result.ok) {
-        window.location.href = "https://node-postgres-production.up.railway.app/";
+        window.location.href = "http://localhost:3071/";
       }
     }
   </script>
@@ -81,7 +81,7 @@
       const titleInput = document.getElementById('title')
       const contentInput = document.getElementById('content')
 
-      fetch(`https://node-postgres-production.up.railway.app/api/posts/${window.location.href.slice(54, 90)}`, {
+      fetch(`http://localhost:3071/api/posts/${window.location.href.slice(28, 64)}`, {
         method: "GET",
         headers: {
           'Content-type': 'application/json'

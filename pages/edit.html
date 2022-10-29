@@ -72,9 +72,11 @@
     const updatePage = (postData) => {
       const titleInput = document.getElementById('title')
       const contentInput = document.getElementById('content')
+      
+      console.log(postData)
 
-      titleInput.value = postData[1].title;
-      contentInput.value = postData[1]._content
+      // titleInput.value = postData.title;
+      // contentInput.value = postData._content
     }
 
     const getPostData = async () => {

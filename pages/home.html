@@ -115,7 +115,7 @@
       align-items: center;
       gap: 1rem;
     ">
-      <a class="profile" href="http://localhost:3071/profile">Profile</a>
+      <a class="profile" href="https://node-postgres-production.up.railway.app/profile">Profile</a>
       <div style="
         font-size: 2rem;
         background-color: #4B196B;
@@ -126,7 +126,7 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-      "><a href="http://localhost:3071/create" style="
+      "><a href="https://node-postgres-production.up.railway.app/create" style="
         border: none;
         margin: 0;
         text-decoration: none;
@@ -166,7 +166,7 @@
         <div class="post">
           <div class="postwrapper">
             <h2 class="title">${title}</h2>
-            <a class="linkstyle" href="http://localhost:3071/posts/${_id}"></a>
+            <a class="linkstyle" href="https://node-postgres-production.up.railway.app/posts/${_id}"></a>
           </div>
           <h4 class="author">${author}</h4>
           <hr class="posthr">
@@ -184,7 +184,7 @@
     const getAllPosts = async () => {
       console.log('retrieving posts...')
       
-      fetch('http://localhost:3071/api/posts', {
+      fetch('https://node-postgres-production.up.railway.app/api/posts', {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'

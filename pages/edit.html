@@ -67,5 +67,39 @@
     <textarea type="textarea" name="content" placeholder="content" id="content"></textarea>
     <input type="submit" id="submitbutton">
   </form>
+
+  <script>
+
+    const updatePage = (postData) => {
+      const titleInput = document.getElementById('title')
+      const contentInput = document.getElementById('content')
+
+      titleInput.value = postData.title;
+      contentInput.value = postData._content
+    }
+
+    const getPostData = async () => {
+      const titleInput = document.getElementById('title')
+      const contentInput = document.getElementById('content')
+
+      const postData = await fetch(process.env.URL + `/api/posts/${window.location.href.slice(54)}`, {
+        method: "GET",
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+
+      if (postData.ok) {
+        updatePage(postData)
+      }
+
+    };
+
+    window.onload = () => {
+      getPostData()
+      
+    }
+
+  </script>
 </body>
 </html>

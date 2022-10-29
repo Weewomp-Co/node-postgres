@@ -24,7 +24,7 @@
 
       console.log(data)
 
-      const result = await fetch('http://localhost:3071/auth/signup', {
+      const result = await fetch('https://node-postgres-production.up.railway.app/auth/signup', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -35,7 +35,7 @@
       console.log(result)
 
       if (result.ok) {
-        window.location.href = "http://localhost:3071/signin";
+        window.location.href = "https://node-postgres-production.up.railway.app/signin";
       }
     }
   </script>

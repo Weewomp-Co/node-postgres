@@ -10,7 +10,7 @@
   
   <script>
     function returnLink(){
-      const link = `http://localhost:3071/posts/${window.location.href.slice(28)}/edit`
+      const link = `https://node-postgres-production.up.railway.app/${window.location.href.slice(28)}/edit`
 
       return link;
     }
@@ -81,7 +81,7 @@
 
   <script>
     const getPostData = async (id) => {
-      const postData = await fetch(`http://localhost:3071/api/posts/${id}`, {
+      const postData = await fetch(`https://node-postgres-production.up.railway.app/api/posts/${id}`, {
         method: "GET",
         headers: {
           'Content-type': 'application/json'
@@ -101,7 +101,7 @@
     };
 
     document.getElementById('submitbutton').addEventListener('click', () =>{
-      window.location.href = `http://localhost:3071/posts/${window.location.href.slice(28)}/edit`
+      window.location.href = `https://node-postgres-production.up.railway.app/posts/${window.location.href.slice(28)}/edit`
     })
 
     window.onload = () => {

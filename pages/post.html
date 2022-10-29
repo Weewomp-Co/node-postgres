@@ -52,7 +52,7 @@
 
   <script>
     const getPostData = async (id) => {
-      const postData = await fetch(`http://localhost:3071/api/posts/${id}`, {
+      const postData = await fetch(`https://node-postgres-production.up.railway.app/api/posts/${id}`, {
         method: "GET",
         headers: {
           'Content-type': 'application/json'
@@ -67,6 +67,8 @@
       document.getElementById("title").innerText = data[0].title
       document.getElementById("content").innerText = data[0]._content
       document.getElementById("author").innerText = data[0].author
+
+      
     };
 
     window.onload = () => {

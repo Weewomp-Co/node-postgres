@@ -6,11 +6,11 @@ const text = "";
 const bcrypt = require("bcrypt");
 const bodyParser = require('body-parser')
 const client = new Client({
-  host: "localhost",
+  host: "containers-us-west-34.railway.app",
   user: "postgres",
-  port: 5432,
-  password: "weewomp23",
-  database: "postgres",
+  port: 7277,
+  password: "ZLmIqx3AK4i4px7KBefr",
+  database: "railway",
 });
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");

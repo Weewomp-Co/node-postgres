@@ -10,7 +10,7 @@
   
   <script>
     function returnLink(){
-      const link = `http://localhost:3071/${window.location.href.slice(28)}/edit`
+      const link = `https://node-postgres-production.up.railway.app/${window.location.href.slice(54, 90)}/edit`
 
       return link;
     }
@@ -118,7 +118,7 @@
 
   <script>
     const getPostData = async (id) => {
-      const postData = await fetch(`http://localhost:3071/api/posts/${id}`, {
+      const postData = await fetch(`https://node-postgres-production.up.railway.app/api/posts/${id}`, {
         method: "GET",
         headers: {
           'Content-type': 'application/json'
@@ -142,7 +142,7 @@
     const handleDelete = async () => {
       if (!hasDeleted) {
         hasDeleted = true;
-        const result = await fetch(`http://localhost:3071/posts/${window.location.href.slice(28)}`, {
+        const result = await fetch(`https://node-postgres-production.up.railway.app/posts/${window.location.href.slice(54)}`, {
           method: 'DELETE',
           headers: {
             'Content-type': 'application/json'
@@ -151,7 +151,7 @@
 
         console.log('delete called')
 
-        window.location.href = `http://localhost:3071/home`
+        window.location.href = `https://node-postgres-production.up.railway.app/home`
       } else {
 
       }
@@ -159,13 +159,13 @@
 
 
     document.getElementById('submitbutton').addEventListener('click', () =>{
-      window.location.href = `http://localhost:3071/posts/${window.location.href.slice(28)}/edit`
+      window.location.href = `https://node-postgres-production.up.railway.app/posts/${window.location.href.slice(54)}/edit`
       })
 
     window.onload = () => {
       var menuOpen = false;
 
-      getPostData(window.location.href.slice(28))
+      getPostData(window.location.href.slice(54))
       
       document.querySelector('.deletebutton').addEventListener('click', () => {
         if (menuOpen) {

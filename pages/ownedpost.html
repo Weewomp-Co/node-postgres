@@ -52,6 +52,29 @@
     #submitbutton:hover{ 
       color: #d29ff1;
     }
+    #confirmMenu {
+      min-width: 30rem;
+      min-height: 8rem;
+      background-color: #90809b;
+      position: absolute;
+      z-index: 3;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+    }
+    .confirmMenuItem {
+      background-color: #4a3755;
+      border-top-left-radius: .25rem;
+      border-top-right-radius: .25rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #confirmMenuButtons{
+      margin-top: auto;
+    }
   </style>
 
   <div style="
@@ -61,12 +84,26 @@
     align-items: center;
   ">
     <h1>You own this post</h1>
-    <button id="submitbutton">Edit</button>
+    <div>
+      <button id="submitbutton">Edit</button>
+      <button type="button" id="submitbutton" class="deletebutton">Delete</button>
+    </div>
   </div>
   <div class="container">
     <h1 id="title"></h1>
     <h2 id="author"></h2>
     <p id="content"></p>
+    <div id="confirmMenu">
+      <div class="confirmMenuItem">
+        Are you sure you want to delete this post?
+      </div>
+      <div class="confirmMenuButtons" style="
+        margin-bottom: 1rem;
+      ">
+        <button id="submitbutton" class="confirmbutton">Confirm</button>
+        <button id="submitbutton" class="cancelbutton">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <div class="container">
@@ -100,12 +137,58 @@
       
     };
 
+    var hasDeleted = false;
+
+    const handleDelete = async () => {
+      if (!hasDeleted) {
+        hasDeleted = true;
+        const result = await fetch(`http://localhost:3071/posts/${window.location.href.slice(28)}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-type': 'application/json'
+          }
+        })
+
+        console.log('delete called')
+
+        window.location.href = `http://localhost:3071/home`
+      } else {
+
+      }
+    }
+
+
     document.getElementById('submitbutton').addEventListener('click', () =>{
       window.location.href = `http://localhost:3071/posts/${window.location.href.slice(28)}/edit`
       })
 
     window.onload = () => {
+      var menuOpen = false;
+
       getPostData(window.location.href.slice(28))
+      
+      document.querySelector('.deletebutton').addEventListener('click', () => {
+        if (menuOpen) {
+          menuOpen = false;
+          document.getElementById('confirmMenu').setAttribute('style', 'display: none')
+        } else { 
+          menuOpen = true;
+          document.getElementById('confirmMenu').setAttribute('style', 'display: flex')
+        }
+      })
+
+      document.querySelector('.cancelbutton').addEventListener('click', () => {
+        if (menuOpen) {
+          menuOpen = false;
+          document.getElementById('confirmMenu').setAttribute('style', 'display: none')
+        } else { 
+          menuOpen = true;
+          document.getElementById('confirmMenu').setAttribute('style', 'display: flex')
+        }
+      })
+      document.querySelector('.confirmbutton').addEventListener('click', () => {
+        handleDelete()
+      })
     };
 
   </script>

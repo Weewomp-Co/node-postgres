@@ -115,7 +115,8 @@ app.get('/posts/:id', async (req, res) => {
     }
 
     } catch(err){
-      res.json({"error": `${err.message}`}).status(400)
+
+      res.sendFile(__dirname + '/pages/signin.html').json({"error": `${err.message}`}).status(400)
     }
   }
 })
@@ -158,6 +159,38 @@ app.put('/posts/:id/edit', async (req, res) => {
     res.sendStatus(200)
     } catch(err) {
       res.json({"error": `${err.message}`}).status(400)
+    }
+  }
+})
+
+app.delete('/posts/:id', async (req, res) => {
+  if (req.cookies.jwt === undefined){
+    res.status(200).redirect("/signin");
+  } else {
+    try {
+      const userid = jwt.decode(req.cookies.jwt) 
+      const verified = jwt.verify(req.cookies.jwt, process.env.REFRESH_TOKEN_SECRET);
+      var values = [userid.userid]
+      var text = `SELECT * FROM posts WHERE userid = $1`
+      const owner = await client.query(text, values);
+      console.log(userid.userid)
+      const match = await client.query('SELECT * FROM posts WHERE userid = $1', values)
+  
+      if (match.rows.length > 0){
+        const deleteQuery = {
+          name: 'delete-query',
+          text: `DELETE FROM posts WHERE _id=$1`,
+          values: [req.params.id]
+        }
+
+        const deleteResult = await client.query(deleteQuery)
+
+        res.status(200).json({})     
+      } else {
+        res.status(200)
+      }
+    } catch(err){
+      res.json({"message": `${err.message}`}).status(200).redirect('/signin')
     }
   }
 })

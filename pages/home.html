@@ -23,6 +23,8 @@
       background-color: #675A6F;
       color: #fff4ff;
       font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
     }
     .post {
       padding: 1rem;
@@ -100,6 +102,12 @@
       display: block;
       cursor: pointer;
     }
+    .feedItem {
+      font-size: 0.85rem;
+    }
+    .feedItemAuthor {
+      color: #d29ff1;
+    }
   </style>
   <div style="
     display: flex;
@@ -134,21 +142,68 @@
       ">+</a></div>
     </div>
   </div>
-  <div class="posts" style="
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    width: 100%;
-    padding: 3em 2em;
-    height: min-content;
-    flex-direction: column;
-    background-color: unset;
-    max-width: 32rem;
-    gap: 1rem;
-  ">
-    <h3>Posts</h3>
-  </div>
 
+  <div class="sectionwrapper" style="
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 2rem;
+  ">
+    <div class="posts" style="
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      width: 100%;
+      padding: 3em 2em;
+      height: min-content;
+      flex-direction: column;
+      background-color: unset;
+      max-width: 32rem;
+      gap: 1rem;
+    ">
+      <h3>Posts</h3>
+    </div>
+
+    <div class="livechat" style="
+      display: flex;
+      justify-content: start;
+      align-items: flex-start;
+      height: min-content;
+      width: 24rem;
+      background-color: rgba(210, 159, 241, 0.1);
+      padding: 1rem 1.25rem;
+      flex-direction: column;
+      position: relative;
+    ">
+      <h2>Livechat</h2>
+      <hr class="posthr" style="
+        padding: 0;
+        margin: 0;
+        margin-bottom: .85rem;
+      ">
+      <div class="feedContainer" style="
+        background-color: #4B196B;
+        width: 100%;
+        height: 16rem;
+        display: flex;
+        justify-content: end;
+        align-items: flex-start;
+        padding: 1rem;
+        flex-direction: column;
+      ">
+        <div class="feedItem">
+          <span class="feedItemAuthor">weewomper</span>: Hey guys this is my message for live chat
+        </div>
+        <div class="feedItem">
+          <span class="feedItemAuthor">weewomper</span>: Hey guys
+        </div>
+        <div class="feedItem">
+          <span class="feedItemAuthor">weewomper</span>: Hey guys
+        </div>
+      </div>
+    </div>
+
+  </div>
   <script>
     const logbutton = document.getElementById('logbutton')
 

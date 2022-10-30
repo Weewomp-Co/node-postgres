@@ -15,7 +15,6 @@
         "email": document.getElementById('email').value,
         "password": document.getElementById('password').value
       }
-      console.log(data)
 
       const result = await fetch('https://node-postgres-production.up.railway.app/auth/signin', {
         method: "POST",
@@ -24,8 +23,6 @@
           'Content-type': 'application/json'
         }
       })
-
-      console.log(result)
 
       if (result.ok) {
         window.location.href = "https://node-postgres-production.up.railway.app/";

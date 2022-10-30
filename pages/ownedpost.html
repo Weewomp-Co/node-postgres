@@ -129,7 +129,6 @@
     };
 
     const updatePage = async (data) => {
-      console.log(data)
       document.getElementById("title").innerText = data[0].title
       document.getElementById("content").innerText = data[0]._content
       document.getElementById("author").innerText = data[0].author
@@ -148,8 +147,6 @@
             'Content-type': 'application/json'
           }
         })
-
-        console.log('delete called')
 
         window.location.href = `https://node-postgres-production.up.railway.app/home`
       } else {

@@ -15,7 +15,6 @@
         "title": document.getElementById('title').value,
         "_content": document.getElementById('content').value,
       }
-      console.log(data)
 
       const result = await fetch(window.location.href, {
         method: "PUT",
@@ -24,8 +23,6 @@
           'Content-type': 'application/json'
         }
       })
-
-      console.log(result)
 
       if (result.ok) {
         window.location.href = "https://node-postgres-production.up.railway.app/";

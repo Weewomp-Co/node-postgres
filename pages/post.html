@@ -35,9 +35,15 @@
 
 
   <div class="container">
-    <h1 id="title"></h1>
-    <h2 id="author"></h2>
-    <p id="content"></p>
+    <h1 id="title" style="
+    color: transparent; text-shadow: 0 0 12px rgba(0,0,0,0.2)
+  ">Loading...</h1>
+    <h2 id="author" style="
+    color: transparent; text-shadow: 0 0 12px rgba(0,0,0,0.2)
+  ">Loading...</h2>
+    <p id="content" style="
+    color: transparent; text-shadow: 0 0 12px rgba(0,0,0,0.2)
+  ">Loading...</p>
   </div>
 
   <div class="container">
@@ -63,9 +69,22 @@
     };
 
     const updatePage = async (data) => {
-      document.getElementById("title").innerText = data[0].title
-      document.getElementById("content").innerText = data[0]._content
-      document.getElementById("author").innerText = data[0].author
+      const author = document.getElementById("author");
+      const content = document.getElementById("content");
+      const title = document.getElementById("title")
+
+      title.innerText = data[0].title
+      content.innerText = data[0]._content
+      author.innerText = data[0].author
+
+      title.style.color = "unset";
+      title.style.textShadow = "none";
+
+      content.style.color = "unset";
+      content.style.textShadow = "none";
+
+      author.style.color = "unset";
+      author.style.textShadow = "none";
 
       
     };

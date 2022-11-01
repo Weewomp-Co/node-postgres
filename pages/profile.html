@@ -42,16 +42,14 @@
     const title = document.getElementById('title');
 
     const getUserData = async () => {
-      const result = await fetch(`https://node-postgres-production.up.railway.app/api/userdata`, {
+      fetch(`https://node-postgres-production.up.railway.app/api/userdata`, {
         method: 'GET',
         headers: {
           'Content-type': 'application/json'
         }
       })
-
-      if (result.ok) {
-        console.log(result.body)
-      }
+        .then(res => res.json())
+        .then(data => console.log(data))
     };
 
     window.onload = () => {

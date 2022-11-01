@@ -44,7 +44,7 @@
     const updatePage = async (data) => {
       const username = document.getElementById('username')
       username.innerText = data.username;
-      
+
     }
 
     const getUserData = async () => {
@@ -55,7 +55,7 @@
         }
       })
         .then(res => res.json())
-        .then(data => updatePage(data))
+        .then(data => {updatePage(data); console.log(data)})
     };
 
     window.onload = () => {

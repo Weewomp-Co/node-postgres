@@ -35,11 +35,17 @@
 
   <div class="wrapper">
     <div class="container">
-      
+      <h2 id="username"></h2>
     </div>
   </div>
   <script>
     const title = document.getElementById('title');
+
+    const updatePage = async (data) => {
+      const username = document.getElementById('username')
+      username.innerText = data.username;
+      
+    }
 
     const getUserData = async () => {
       fetch(`https://node-postgres-production.up.railway.app/api/userdata`, {
@@ -49,7 +55,7 @@
         }
       })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => updatePage(data))
     };
 
     window.onload = () => {

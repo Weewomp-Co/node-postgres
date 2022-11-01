@@ -315,8 +315,8 @@ app.get('/api/userdata', async (req, res) => {
 
     const verified = jwt.verify(req.cookies.jwt, process.env.REFRESH_TOKEN_SECRET);
     var text = `SELECT * 
-                WHERE "userid"="${req.params.id}"
-                FROM "users" 
+                FROM "users"
+                WHERE "userid"="${req.params.id}" 
                 `
     const posts = await client.query(text);
     

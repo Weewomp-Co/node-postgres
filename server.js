@@ -316,7 +316,7 @@ app.get('/api/userdata', async (req, res) => {
     const verified = jwt.verify(req.cookies.jwt, process.env.REFRESH_TOKEN_SECRET);
     const userid = jwt.decode(req.cookies.jwt)
     var text = `SELECT * FROM users WHERE userid=$1`
-    const posts = await client.query(text, [userid]);
+    const posts = await client.query(text, [userid.userid]);
     
     res.json(posts.rows).status(200);
     } catch(err){

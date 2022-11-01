@@ -149,10 +149,16 @@ app.put('/posts/:id/edit', async (req, res) => {
     try {
     const verified = jwt.verify(req.cookies.jwt, process.env.REFRESH_TOKEN_SECRET)
 
-    var text = `UPDATE posts WHERE _id = $1 SET title = '${title}'`
+    var text = `UPDATE "posts" 
+                SET "title" = '${title}'
+                WHERE "_id" = $1 
+                `
     var update = await client.query(text, [req.params.id]);
 
-    var text = `UPDATE posts WHERE _id = $1 SET _content = '${_content}'`
+    var text = `UPDATE "posts"
+                SET "_content" = '${_content}'
+                WHERE "_id" = $1 
+                `
     
     var update = await client.query(text, [req.params.id])
     

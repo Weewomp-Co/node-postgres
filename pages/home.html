@@ -109,6 +109,7 @@
       color: #d29ff1;
     }
   </style>
+
   <div style="
     display: flex;
     justify-content: start;
@@ -164,7 +165,7 @@
       <h3>Posts</h3>
     </div>
 
-    <div class="livechat" style="
+    <!-- <div class="livechat" style="
       display: flex;
       justify-content: start;
       align-items: flex-start;
@@ -181,7 +182,7 @@
         margin: 0;
         margin-bottom: .85rem;
       ">
-      <div class="feedContainer" style="
+       <div class="feedContainer" style="
         background-color: #4B196B;
         width: 100%;
         height: 16rem;
@@ -200,8 +201,8 @@
         <div class="feedItem">
           <span class="feedItemAuthor">weewomper</span>: Hey guys
         </div>
-      </div>
-    </div>
+      </div> 
+    </div> -->
 
   </div>
   <script>
@@ -237,7 +238,6 @@
     }
 
     const getAllPosts = async () => {
-      console.log('retrieving posts...')
       
       fetch('http://localhost:3071/api/posts', {
         method: 'GET',
@@ -246,17 +246,8 @@
         }
       })
         .then((res) => res.json())
-        .then((data) => {console.log(data); populatePage(data)})
+        .then((data) => {populatePage(data)})
         
-      // const posts = await fetch('http://localhost:3071/api/posts', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Content-type': 'application/json'
-      //   }
-      // });
-      // if (posts.ok) {
-      //   console.log(posts.json())
-      // }
     }
 
     window.onload = () => {

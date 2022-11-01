@@ -41,8 +41,17 @@
   <script>
     const title = document.getElementById('title');
 
-    const getPostData = async () => {
-      
+    const getUserData = async () => {
+      const result = await fetch(`https://node-postgres-production.up.railway.app/api/userdata`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+
+      if (result.ok) {
+        console.log(result.body)
+      }
     };
 
     window.onload = () => {

@@ -31,13 +31,13 @@
     }
   </style>
 
-  <h1 id="title" style="
-    color: transparent; text-shadow: 0 0 5px rgba(0,0,0,0.5)
-  ">Profile</h1>
+  <h1 id="title">Profile</h1>
 
   <div class="wrapper">
     <div class="container">
-      <h2 id="username"></h2>
+      <h2 id="username" style="
+      color: transparent; text-shadow: 0 0 12px rgba(0,0,0,0.2)
+    "></h2>
     </div>
   </div>
   <script>
@@ -46,7 +46,8 @@
     const updatePage = async (data) => {
       const username = document.getElementById('username')
       username.innerText = data[0].username;
-      
+      username.style.color = "unset";
+      username.style.textShadow = "none";
     }
 
     const getUserData = async () => {

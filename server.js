@@ -9,7 +9,7 @@ const client = new Client({
   host: "containers-us-west-34.railway.app",
   user: "postgres",
   port: 7277,
-  password: "ZLmIqx3AK4i4px7KBefr",
+  password: "4y6nGPIhlNVevxPsXGO8",
   database: "railway",
 });
 const jwt = require("jsonwebtoken");
